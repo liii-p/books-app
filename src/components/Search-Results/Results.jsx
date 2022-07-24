@@ -15,24 +15,24 @@ class Results extends React.Component {
   }
 
   // searchBook = (e) => {
-  // response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=40`)
+  // response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.searchTerm}&maxResults=40`)
   // }
 
-  // searchBook = (e) => {
-  //   e.preventDefault();
-  //   request
-  //     .get(`https://www.googleapis.com/books/v1/volumes`)
-  //     .query({ q: this.state.searchTerm })
-  //     .then((data) => {
-  //       const cleanData = this.cleanData(data);
-  //       this.setState({ books: cleanData });
-  //     });
-  // };
+  searchBook = (e) => {
+    e.preventDefault();
+    request
+      .get(`https://www.googleapis.com/books/v1/volumes`)
+      .query({ q: this.state.searchTerm })
+      .then((data) => {
+        const cleanData = this.cleanData(data);
+        this.setState({ books: cleanData });
+      });
+  };
 
-  // handleSearch = (e) => {
-  //   console.log(e.target.value);
-  //   this.setState({ searchTerm: e.target.value });
-  // };
+  handleSearch = (e) => {
+    console.log(e.target.value);
+    this.setState({ searchTerm: e.target.value });
+  };
 
   cleanData = (data) => {
     const cleanedData = data.body.items.map((book) => {
@@ -54,8 +54,8 @@ class Results extends React.Component {
     return (
       <div className={styles.Results}>
         <SearchBar
-          handleFetch={this.handleFetch}
-          getBook={this.getBook}
+          handleSearch={this.handleSearch}
+          searchBook={this.searchBook}
           className={styles.Search}
         />
         <BookList books={this.state.books} />
