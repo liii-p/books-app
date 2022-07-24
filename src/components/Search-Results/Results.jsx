@@ -1,9 +1,7 @@
 import React from "react";
 import SearchBar from "../SearchBar/SearchBar";
-import request from "superagent";
 import BookList from "./BookList";
 import styles from "../Search-Results/Results.module.scss";
-import { handleFetch, getBook } from "../../assets/fetcher";
 
 class Results extends React.Component {
   constructor(props) {
@@ -14,22 +12,20 @@ class Results extends React.Component {
     };
   }
 
-  // searchBook = (e) => {
-  // response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.searchTerm}&maxResults=40`)
-  // }
+  searchBook = async (searchTerm) => {
+    const response = await fetch(
+      `https://www.googleapis.com/books/v1/volumes?q=${this.searchTerm}&maxResults=40`
+    );
 
-  searchBook = (e) => {
-    e.preventDefault();
-    request
-      .get(`https://www.googleapis.com/books/v1/volumes`)
-      .query({ q: this.state.searchTerm })
-      .then((data) => {
-        const cleanData = this.cleanData(data);
-        this.setState({ books: cleanData });
-      });
+    const book = await response.json();
+    return book.items.then((data) => {
+      const cleanData = this.cleanData(data);
+      this.setState({ books: cleanData });
+    });
   };
 
   handleSearch = (e) => {
+    e.preventDefault();
     console.log(e.target.value);
     this.setState({ searchTerm: e.target.value });
   };
