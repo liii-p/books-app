@@ -1,0 +1,11 @@
+.BookCard {
+  border: 1px solid #e5eaed;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.24);
+  background-color: rgb(255, 172, 255);
+  border-radius: 20px;
+  width: 30rem;
+
+  &__desc {
+    margin: 10px 10px;
+  }
+}
