@@ -12,16 +12,30 @@ class Results extends React.Component {
     };
   }
 
-  searchBook = async (searchTerm) => {
-    const response = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${this.searchTerm}&maxResults=40`
-    );
+  fetchBooks = async (searchTerm) => {
+    try {
+      const response = await fetch(
+        `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=40`
+      );
 
-    const book = await response.json();
-    return book.items.then((data) => {
-      const cleanData = this.cleanData(data);
-      this.setState({ books: cleanData });
-    });
+      const data = await response.json();
+      const results = data.items;
+      const bookResults = results.map((book) => {
+        const bookInfo = book.volumeInfo;
+        return {
+          title: bookInfo.title,
+          authors: bookInfo.authors,
+          description: bookInfo.description,
+          imageLinks: bookInfo.imageLinks ?? {
+            thumbnail: "https://via.placeholder.com/200",
+          },
+        };
+      });
+
+      console.log(bookResults[0]);
+    } catch (e) {
+      new Error("error fetching book");
+    }
   };
 
   handleSearch = (e) => {
@@ -51,7 +65,7 @@ class Results extends React.Component {
       <div className={styles.Results}>
         <SearchBar
           handleSearch={this.handleSearch}
-          searchBook={this.searchBook}
+          fetchBooks={this.fetchBooks}
           className={styles.Search}
         />
         <BookList books={this.state.books} />
