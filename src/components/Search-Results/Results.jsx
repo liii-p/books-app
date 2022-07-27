@@ -12,30 +12,12 @@ class Results extends React.Component {
     };
   }
 
-  fetchBooks = async (searchTerm) => {
-    try {
-      const response = await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=40`
-      );
+  handleFetch = async (searchTerm) => {
+    const url = `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=40`;
 
-      const data = await response.json();
-      const results = data.items;
-      const bookResults = results.map((book) => {
-        const bookInfo = book.volumeInfo;
-        return {
-          title: bookInfo.title,
-          authors: bookInfo.authors,
-          description: bookInfo.description,
-          imageLinks: bookInfo.imageLinks ?? {
-            thumbnail: "https://via.placeholder.com/200",
-          },
-        };
-      });
-
-      console.log(bookResults[0]);
-    } catch (e) {
-      new Error("error fetching book");
-    }
+    const response = await fetch(url);
+    const json = await response.json();
+    return json.items;
   };
 
   handleSearch = (e) => {

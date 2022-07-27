@@ -1,4 +1,4 @@
-export const handleFetch = async (searchTerm, maxResults = 40) => {
+export const handleFetch = async (searchTerm) => {
   const url = `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=${maxResults}`;
 
   const response = await fetch(url);
