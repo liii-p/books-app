@@ -54,7 +54,7 @@ function App() {
           placeholder="Search for a book..."
         />
         <button onClick={handleSubmit}>Search</button>
-        <p>{`Books currently display: ${displayBooks.length}`}</p>
+        <p>{`Books currently displayed: ${displayBooks.length}`}</p>
       </div>
       <BookList className={styles.BookList__desc} book={displayBooks} />
     </div>
