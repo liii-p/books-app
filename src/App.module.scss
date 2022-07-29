@@ -1,10 +1,14 @@
 .App {
-  background-color: #f9ceee;
+  background-color: #ff6cab;
 }
 
 .App__SearchBar {
   display: flex;
   justify-content: center;
+
+  :hover {
+    border-color: black;
+  }
 
   p {
     margin-left: 10px;
@@ -27,11 +31,13 @@ header > h1 {
 
 input {
   margin-top: 5px;
-  border: 2px solid hotpink;
+  border: 2px solid white;
   height: 50px;
   width: 50rem;
   padding-right: 0;
+  padding-left: 10px;
   font-size: large;
+  color: white;
 }
 
 ::placeholder {

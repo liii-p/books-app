@@ -23,6 +23,9 @@ function App() {
   }, [input]);
 
   const handleSubmit = async () => {
+    if (input === "") {
+      return alert("Please search something before...searching.");
+    }
     const response = await fetch(
       `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=40`
     );
@@ -39,6 +42,9 @@ function App() {
       return book.volumeInfo;
     });
 
+    if (bookData.length === 0) {
+      return alert("No results found");
+    }
     setDisplayBooks(bookData);
   };
 

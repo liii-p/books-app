@@ -7,16 +7,7 @@ const BookList = ({ book }) => {
     <div className={styles.BookList}>
       {book.map((book, i) => {
         return (
-          <BookCard
-            className={styles.BookList__desc}
-            bookData={book}
-            key={i}
-            // img={book.volumeInfo.imageLinks.thumbnail}
-            // title={book.volumeInfo.title}
-            // author={book.volumeInfo.authors}
-            // pubDate={book.volumeInfo.publishedDate}
-            // desc={book.volumeInfo.description}
-          />
+          <BookCard className={styles.BookList__desc} bookData={book} key={i} />
         );
       })}
     </div>
