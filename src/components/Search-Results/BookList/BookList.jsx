@@ -7,7 +7,11 @@ const BookList = ({ book }) => {
     <div className={styles.BookList}>
       {book.map((book, i) => {
         return (
-          <BookCard className={styles.BookList__desc} bookData={book} key={i} />
+          <BookCard
+            className={styles.BookList__desc}
+            bookData={book.volumeInfo}
+            key={book.id}
+          />
         );
       })}
     </div>

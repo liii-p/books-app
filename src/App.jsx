@@ -32,15 +32,8 @@ function App() {
     console.log(search);
 
     const data = await response.json();
-
-    console.log(
-      data.items.map((book) => {
-        return book.volumeInfo;
-      })
-    );
-    const bookData = data.items.map((book) => {
-      return book.volumeInfo;
-    });
+    const bookData = data.items;
+    console.log(bookData);
 
     if (bookData.length === 0) {
       return alert("No results found");
