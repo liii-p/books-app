@@ -1,6 +1,8 @@
-# Google Books API App
+# Google Books API App - Imaginarium
 
 ## MVP
+
+Made with JavaScript in React.
 
 Create a page that allows users to search for books
 Page should include the following:
@@ -61,11 +63,13 @@ Final Product:
 
 Originally, I was going to go with a purple-ish colour scheme but as I experimented with the css, I found that I preferred the look of a minimalistic pink colour scheme.
 
+I called it Imaginarium because of how books can inspire the imagination.
+
 ## Bugs & Fixes
 
 As I tested my app, I came across the need to fix a number of edge cases that would occur. The first edge case/error I came across was the absence of certain information from the Google Books API, especially the thumbnail. If a book did not have a thumbnail, it would cause an error which stopped the whole app. To overcome this, I decided I needed to create an if statement to catch this error. I decided to use ternary statements as they are shorter, although they may reduce readability. If the thumbnail doesn't exist, the app instead returns an alternative image which says "image unavailable". Similar issues occurred where the author, publisher, etc. were unavailable so I used the same ternary method to allow the console to either output the relevant information or "N/A" where information was unavailable.
 
-### Future Additions
+## Future Additions
 
 - Return a result on the screen that says "No results found" when response from API is no results.
 - Pagination to allow more results to be viewed
